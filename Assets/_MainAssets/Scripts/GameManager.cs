@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour {
 	ClarizRaycaster _clarizRaycaster;
 	ClarizHealth _clarizHealth;
 	CharacterAnimation _geraldAnimation;
+	CharacterAnimation _clarizAnimation;
 	BackgroundManager _backgroundManager;
 	SpriteManager _spriteManager;
 	GeraldMovement _geraldMovement;
@@ -34,6 +35,7 @@ public class GameManager : MonoBehaviour {
 
 		_clarizRaycaster = _clariz.GetComponent<ClarizRaycaster>();
 		_clarizHealth = _clariz.GetComponent<ClarizHealth>();
+		_clarizAnimation = _clariz.GetComponent<CharacterAnimation>();
 		_characterControl = _clariz.GetComponent<CharacterControl>();
 		_geraldAnimation = _gerald.GetComponent<CharacterAnimation>();
 		_geraldMovement = _gerald.GetComponent<GeraldMovement>();
@@ -62,6 +64,8 @@ public class GameManager : MonoBehaviour {
 			_spawnManager.StopSpawning();
 			StopObstacles();
 			_characterControl.DisableControl();
+			_clarizAnimation.StopAnimation();
+			_geraldAnimation.StopAnimation();
 
 			if(PlayerPrefs.GetInt("HasCompleted") == 1)
 			{
@@ -84,10 +88,12 @@ public class GameManager : MonoBehaviour {
 			_distance = 0;
 			_loadingGiftText.GetComponent<Text>().enabled = true;
 			_characterControl.DisableControl();
+			_geraldAnimation.StopAnimation();
+			_clarizAnimation.StopAnimation();
 			
 			if(PlayerPrefs.GetInt("HasCompleted") == 1)
 			{
-				Application.LoadLevel("MenuScene");
+				StartCoroutine(LoadMenuScene());
 			}
 			else
 			{

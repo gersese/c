@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/_MainAssets/Scenes/CountdownScene.unity
+- path: Assets/_MainAssets/Scenes/MenuScene.unity
   isLoaded: 1
   isActive: 1

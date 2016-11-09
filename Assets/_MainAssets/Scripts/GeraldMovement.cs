@@ -3,11 +3,12 @@ using System.Collections;
 
 public class GeraldMovement : MonoBehaviour 
 {
+	const float JUMP_FORCE = 8.8f;
 	const float MOVEMENT_SPEED = 5.9f;
 
 	Vector2 _direction;
 	bool _isCaught = false;
-
+	
 	void Start () 
 	{
 		_direction = new Vector2(
@@ -30,4 +31,5 @@ public class GeraldMovement : MonoBehaviour
 	{
 		_isCaught = true;
 	}
+
 }

@@ -8,10 +8,12 @@ public class CharacterControl : MonoBehaviour {
 	Vector3 _initialPosition;
 	bool _isJumping = false;
 	bool _isControllable = true;
+	CharacterAnimation _characterAnimation;
 
 	void Start () 
 	{
 		_rigidBody = GetComponent<Rigidbody2D>();
+		_characterAnimation = GetComponent<CharacterAnimation>();
 		_initialPosition = transform.position;
 	}
 	
@@ -28,6 +30,7 @@ public class CharacterControl : MonoBehaviour {
 	{
 		_rigidBody.velocity = new Vector2(0, JUMP_FORCE);
 		_isJumping = true;
+		_characterAnimation.Jump();
 	}
 
 	void FreezeYConstraint()
@@ -49,6 +52,7 @@ public class CharacterControl : MonoBehaviour {
 	{
 		if(c.tag == "Ground")
 		{
+			_characterAnimation.Grounded();
 			transform.position = _initialPosition;
 			FreezeYConstraint();
 			_isJumping = false;
