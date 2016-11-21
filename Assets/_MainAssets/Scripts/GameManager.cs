@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour {
 			}
 			else
 			{
-				StartCoroutine(LoadLetterScene());
+				StartCoroutine(LoadCountdownScene());
 				SetAsCompleted();
 			}
 		}
@@ -145,6 +145,13 @@ public class GameManager : MonoBehaviour {
 		yield return new WaitForSeconds(3);
 		Application.LoadLevel("MenuScene");
 	}
+
+	IEnumerator LoadCountdownScene()
+	{
+		yield return new WaitForSeconds(3);
+		Application.LoadLevel("CountdownScene");
+	}
+
 	void SetAsCompleted()
 	{
 		PlayerPrefs.SetInt("HasCompleted", 1);
